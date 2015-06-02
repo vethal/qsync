@@ -1,0 +1,21 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# OS or Editor folders
+.DS_Store
+.cache
+Icon?
+
+# npm
+node_modules
+*.log
+*.gz
