@@ -120,25 +120,25 @@ qsync.serial([10, 15, 20], [
 
 <a name="goto"/>
 ##Goto
-
+ToDo
 <a name="break"/>
 ###break
-
+ToDo
 <a name="continue"/>
 ###continue
-
+ToDo
 <a name="repeat"/>
 ###repeat
-
+ToDo
 <a name="default"/>
 ###default
-
+ToDo
 <a name="limit"/>
 ##Limit
-
+ToDo
 <a name="queue"/>
 ##Queue
-
+ToDo
 <a name="detailedExample"/>
 ##Detailed Example
 ```js
@@ -307,30 +307,53 @@ function (error, results) {
 
 <a name="controlFlowExamples"/>
 ##Control flow examples
-
+ToDo
 <a name="while"/>
 ###while
-
+ToDo
 <a name="doWhile"/>
 ###do while
-
+ToDo
 <a name="for"/>
 ###for
-
+ToDo
 <a name="forEach"/>
 ###for each
-
+ToDo
 <a name="middleware"/>
 ##Middleware
-
+ToDo
 <a name="inputProcessing"/>
 ###Input processing
-
+ToDo
 <a name="flowControl"/>
 ###Flow control
-
+ToDo
 <a name="storage"/>
 ###Storage
-
+ToDo
 <a name="license"/>
 ##License
+```
+The MIT License (MIT)
+
+Copyright (c) 2015 Fazil Vadakkumpadath
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
