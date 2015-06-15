@@ -19,10 +19,9 @@ suite("serial", function() {
 		var order = [];
 
 		qsync.serial({
-			idle: function (result, callback) {
+			idle: function (callback) {
 				process.nextTick(function () {
 					order.push("idle");
-					assert.equal(result, null);
 					callback(null, 10);
 				});
 			},
@@ -48,15 +47,10 @@ suite("serial", function() {
 				});
 			}
 		},
-		function (error, results) {
+		function (error, result) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			});
+			assert.equal(result, 40);
 			done();
 		});
 	});
@@ -98,15 +92,10 @@ suite("serial", function() {
 				});
 			}
 		},
-		function (error, results) {
+		function (error, result) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			});
+			assert.equal(result, 40);
 			done();
 		});
 	});
@@ -157,22 +146,7 @@ suite("serial", function() {
 				"idle", "start", "active", "stop"
 			]);
 			assert.deepEqual(input, [15, 25, 35]);
-			assert.deepEqual(results, [{
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}]);
+			assert.deepEqual(results, [40, 40, 40]);
 			done();
 		});
 	});
@@ -216,15 +190,10 @@ suite("serial", function() {
 				});
 			}
 		},
-		function (error, results) {
+		function (error, result) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			});
+			assert.equal(result, 40);
 			done();
 		});
 	});
@@ -269,12 +238,7 @@ suite("serial", function() {
 		function (error, results) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, [{
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}]);
+			assert.deepEqual(results, [40]);
 			done();
 		});
 	});

@@ -19,31 +19,27 @@ suite("parallel", function() {
 		var order = [];
 
 		qsync.parallel({
-			idle: function (result, callback) {
+			idle: function (callback) {
 				setTimeout(function () {
 					order.push("idle");
-					assert.equal(result, null);
 					callback(null, 10);
 				}, 400);
 			},
-			start: function (result, callback) {
+			start: function (callback) {
 				setTimeout(function () {
 					order.push("start");
-					assert.equal(result, null);
 					callback(null, 20);
 				}, 300);
 			},
-			active: function (result, callback) {
+			active: function (callback) {
 				setTimeout(function () {
 					order.push("active");
-					assert.equal(result, null);
 					callback(null, 30);
 				}, 200);
 			},
-			stop: function (result, callback) {
+			stop: function (callback) {
 				setTimeout(function () {
 					order.push("stop");
-					assert.equal(result, null);
 					callback(null, 40);
 				}, 100);
 			}
@@ -98,15 +94,10 @@ suite("parallel", function() {
 				}, 100);
 			}
 		},
-		function (error, results) {
+		function (error, result) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			});
+			assert.equal(result, 40);
 			done();
 		});
 	});
@@ -158,22 +149,7 @@ suite("parallel", function() {
 				"stop", "stop", "stop"
 			]);
 			assert.deepEqual(input, [15, 25, 35]);
-			assert.deepEqual(results, [{
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}]);
+			assert.deepEqual(results, [40, 40, 40]);
 			done();
 		});
 	});
@@ -217,15 +193,10 @@ suite("parallel", function() {
 				}, 100);
 			}
 		},
-		function (error, results) {
+		function (error, result) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, {
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			});
+			assert.equal(result, 40);
 			done();
 		});
 	});
@@ -270,12 +241,7 @@ suite("parallel", function() {
 		function (error, results) {
 			assert.equal(error, null);
 			assert.deepEqual(order, ["idle", "start", "active", "stop"]);
-			assert.deepEqual(results, [{
-				"idle": 10,
-				"start": 20,
-				"active": 30,
-				"stop": 40,
-			}]);
+			assert.deepEqual(results, [40]);
 			done();
 		});
 	});

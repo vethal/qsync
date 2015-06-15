@@ -2,7 +2,7 @@
 	"name": "qsync",
 	"version": "0.0.5",
 	"description": "[Under development]",
-	"main": "src/index.js",
+	"main": "lib/index.js",
 	"scripts": {
 		"test": "mocha -u tdd"
 	},
