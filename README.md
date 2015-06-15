@@ -1,3 +1,6 @@
+> **Warning:**
+This documentation is a draft version and highly incomplete.
+
 # qsync
 Quick sync is a two API solution to synchronize asynchronous function calls. It helps to implement common control flow scenarios easily.
 ## Installation
