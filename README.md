@@ -85,7 +85,7 @@ qsync.serial(15, [
 ]);
  ```
  * **array input** In case of an array input, each array element will be passed as the `input` argument of first task. If array has `n` number of elements, `tasks` will be run `n` times each corresponds to a respective data in array.
-In both API, a group of `tasks` are created to process each input. The groups can run either sequentially (in serial API) or concurrently (in parallel API). Though the `tasks` inside a group will be running in serial by default in both the APIs. In parallel API, each array element will be processed in parallel. Note that the tasks inside a group are still running serially and this default behavior can be modified by overriding [flow control](#flowControl) middleware. This default behavior is different in `no input` and in `single input`.
+In both API, a group of `tasks` are created to process each input. The groups can run either sequentially (in serial API) or concurrently (in parallel API). Though the `tasks` inside a group will be running in serial by default in both the APIs. In parallel API, each array element will be processed in parallel. Note that the tasks inside a group are still running serially and this default behavior can be modified by overriding [flow control](#flowControl) middleware. This default behavior is different in `no input` and in `single input` scenario.
 In below example, a group of task1 and task2 for processing input 10 will be created and running in serial. another group of task1 and task2 for processing input 15 will also be created and running in serial and a third task group for processing 20 will also be running similarly. But in parallel API, all these groups will be running in parallel so that all inputs will be processed in parallel. But inside any of the three group, task1 and task2 will be running in serial.
  ```js
 qsync.serial([10, 15, 20], {
@@ -100,11 +100,24 @@ qsync.serial(3, 5, 11, [
 ]);
  ```
 * **`tasks`**
- * **single task** An array of functions or a json of functions or a single function. Each function has a syntax of `function (input1, input2, ..., callback)` where inputs are the result passed from previous task. In case of first task it will be `input` argument if present or null if it's absent.
+ * **single task** Only one function will be given as a task with following syntax.
+ ```js
+function (input1, input2, ..., callback) {}
+ ```
+ `input1`, `input2`, etc are the `input` argument provided to the API or the input passed via `callback` of previously called task.
  ```js
 qsync.serial([10, 15, 20], function (input, callback) {...});
  ```
- * **json tasks** An array of functions or a json of functions or a single function. Each function has a syntax of `function (input1, input2, ..., callback)` where inputs are the result passed from previous task. In case of first task it will be `input` argument if present or null if it's absent.
+ * **json tasks** Instead of giving a single task, it's possible to give a number of labeled task so that the `input` can be processed as a state machine.
+ ```js
+{
+	label1: function (input1, input2, ..., callback) {},
+	label2: function (input1, input2, ..., callback) {},
+	:
+	labelN: function (input1, input2, ..., callback) {}
+}
+ ```
+ In above syntax, all functions should have the same syntax as explained in single task.
  ```js
 qsync.serial([10, 15, 20], {
 	idle: function (input, callback) {...},
@@ -112,14 +125,23 @@ qsync.serial([10, 15, 20], {
 	close: function (result, callback) { ... }
 });
  ```
- * **array of tasks** An array of functions or a json of functions or a single function. Each function has a syntax of `function (input1, input2, ..., callback)` where inputs are the result passed from previous task. In case of first task it will be `input` argument if present or null if it's absent.
+ * **array of tasks** An array of functions can also be given as `tasks` if labels are not significant.
+ ```js
+[
+	function (input1, input2, ..., callback) {},
+	function (input1, input2, ..., callback) {},
+	:
+	function (input1, input2, ..., callback) {}
+]
+ ```
+ In above syntax, all functions should have the same syntax as explained in single task.
  ```js
 qsync.serial([10, 15, 20], [
 	function (input, callback) {...},
 	function (result, callback) {...}
 ]);
  ```
-* **`callback(error, results)`** - *An optional* callback which is called when all inputs are processed or an error occurs. If `tasks` are json, result will also be a json and if `tasks` are array, result will also be an array. However it's possible to change this behavior by overriding middleware as explained in section `use` API.
+* **`callback(error, result)`** - *An optional* callback which is called when all inputs are processed or an error occurs. By default the `result` argument will be the result returned by last `task`. However it's possible to change this behavior by overriding middleware as explained in section  [`Storage`](#storage). If last `task` didn't pass a result, only `error` argument will be passed to this callback.
 
 <a name="goto"/>
 ##Goto
