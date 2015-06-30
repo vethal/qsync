@@ -1,6 +1,3 @@
-> **Warning:**
-This documentation is a draft version and highly incomplete.
-
 # qsync
 Quick sync is a two API solution to synchronize asynchronous function calls. It helps to implement common control flow scenarios easily.
 ## Installation
@@ -42,6 +39,7 @@ function (error, results) {
 	 * [`break`](#break)
 	 * [`continue`](#continue)
 	 * [`repeat`](#repeat)
+	 * [`void`](#void)
 	 * [`default`](#default)
  * [`Limit`](#limit)
  * [`Queue`](#queue)
@@ -154,6 +152,9 @@ ToDo
 ToDo
 <a name="repeat"/>
 ###repeat
+ToDo
+<a name="void"/>
+###void
 ToDo
 <a name="default"/>
 ###default

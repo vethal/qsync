@@ -1,6 +1,6 @@
 {
 	"name": "qsync",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"description": "[Under development]",
 	"main": "lib/index.js",
 	"scripts": {
