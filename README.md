@@ -1,4 +1,4 @@
-# qsync
+# qsync [Under development]
 Quick sync is a two API solution to synchronize asynchronous function calls. It helps to implement common control flow scenarios easily.
 ## Installation
 This module is originally written for nodejs. Though it's planned to port into other areas in future.
